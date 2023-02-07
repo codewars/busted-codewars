@@ -1,3 +1,4 @@
+rockspec_format = "3.0"
 package = "busted-codewars"
 version = "dev-1"
 source = {
@@ -17,4 +18,8 @@ dependencies = {
 build = {
    type = "builtin",
    modules = {}
+}
+
+test = {
+  type = "busted"
 }

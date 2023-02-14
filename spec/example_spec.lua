@@ -24,5 +24,34 @@ describe("Busted unit testing framework", function()
     it("should provide some shortcuts to common functions", function()
       assert.are.unique({{ thing = 1 }, { thing = 2 }, { thing = 3 }})
     end)
+
+    it("should present failed assertions with FAILED", function()
+      assert.falsy(0)
+    end)
+
+    describe("should present errors in IT with LOG", function()
+      it("IT with an error", function()
+        local nilobj = nil
+        nilobj.test()
+        assert.falsy(0)
+      end)
+    end)
+    
+    describe("should present errors in describe with ERROR", function()
+    
+      local nilobj = nil
+      nilobj.test()
+      
+      it("dummy IT", function()
+        assert.falsy(0)
+      end)
+    end)
+    
+    describe("should present errors in IT titles with ERROR", function()
+      local nilobj = nil
+      it("it block with ERROR" .. nilobj.test(), function()
+        assert.falsy(0)
+      end)
+    end)
   end)
 end)

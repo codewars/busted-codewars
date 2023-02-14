@@ -6,7 +6,7 @@ return function(options)
   end
 
   local function onDescribeStart(element, parent)
-    print('\n<DESCRIBE::>' .. element.name)
+    print('\n<DESCRIBE::>' .. escape(element.name))
     return nil, true
   end
   local function onDescribeEnd(element, parent)
@@ -16,7 +16,7 @@ return function(options)
   end
 
   local function onTestStart(element, parent)
-    print('\n<IT::>' .. element.name)
+    print('\n<IT::>' .. escape(element.name))
     return nil, true
   end
   local function onTestEnd(element, parent, status, trace)

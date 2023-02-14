@@ -29,6 +29,10 @@ describe("Busted unit testing framework", function()
       assert.falsy(0)
     end)
 
+    it("should present failed assertions with custom message", function()
+      assert.are.same(13, 42, "Incorrect answer for input n=10")
+    end)
+
     describe("should present errors in IT with LOG", function()
       it("IT with an error", function()
         local nilobj = nil

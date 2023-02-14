@@ -31,7 +31,7 @@ return function(options)
   local function onTestFailure(element, parent, message, debug)
     -- remove '/home/codewarrior/lua/fixture.lua:\d+: ' from message
     local msg = escape(message:sub(message:find(' ') + 1))
-    print('\n<FAILED::>Test Failed<:LF:>' .. msg)
+    print('\n<FAILED::>' .. msg)
     return nil, true
   end
 

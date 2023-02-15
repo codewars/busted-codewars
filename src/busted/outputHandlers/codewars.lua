@@ -6,7 +6,7 @@ return function(options)
   end
 
   local function onDescribeStart(element, parent)
-    print('\n<DESCRIBE::>' .. element.name)
+    print('\n<DESCRIBE::>' .. escape(element.name))
     return nil, true
   end
   local function onDescribeEnd(element, parent)
@@ -16,7 +16,7 @@ return function(options)
   end
 
   local function onTestStart(element, parent)
-    print('\n<IT::>' .. element.name)
+    print('\n<IT::>' .. escape(element.name))
     return nil, true
   end
   local function onTestEnd(element, parent, status, trace)
@@ -29,9 +29,9 @@ return function(options)
   end
 
   local function onTestFailure(element, parent, message, debug)
-    print('\n<FAILED::>Test Failed')
     -- remove '/home/codewarrior/lua/fixture.lua:\d+: ' from message
-    print('\n<LOG:ESC:>' .. escape(message:sub(message:find(' ') + 1)))
+    local msg = escape(message:sub(message:find(' ') + 1))
+    print('\n<FAILED::>' .. msg)
     return nil, true
   end
 
@@ -43,8 +43,7 @@ return function(options)
 
   local function onError(element, parent, message, debug)
     if element.descriptor ~= 'it' then
-      print('\n<ERROR::>Error')
-      print('\n<LOG:ESC:>' .. escape(message))
+      print('\n<ERROR::>Error<:LF:>' .. escape(message))
     end
     return nil, true
   end

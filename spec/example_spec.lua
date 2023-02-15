@@ -24,5 +24,48 @@ describe("Busted unit testing framework", function()
     it("should provide some shortcuts to common functions", function()
       assert.are.unique({{ thing = 1 }, { thing = 2 }, { thing = 3 }})
     end)
+
+    it("should present failed assertions with FAILED", function()
+      assert.falsy(0)
+    end)
+
+    it("should present failed assertions with custom message", function()
+      assert.are.same(13, 42, "Incorrect answer for input n=10")
+    end)
+
+    describe("should present errors in IT with LOG", function()
+      it("IT with an error", function()
+        local nilobj = nil
+        nilobj.test()
+        assert.falsy(0)
+      end)
+    end)
+    
+    describe("should present errors in describe with ERROR", function()
+    
+      local nilobj = nil
+      nilobj.test()
+      
+      it("dummy IT", function()
+        assert.falsy(0)
+      end)
+    end)
+    
+    describe("should present errors in IT titles with ERROR", function()
+      local nilobj = nil
+      it("it block with ERROR" .. nilobj.test(), function()
+        assert.falsy(0)
+      end)
+    end)
+  end)
+  
+  describe("Should support newlines\nin group titles", function()
+    it("Should support newlines\nin test titles", function()
+      assert.truthy(0, "Should support newlines\nin assertion messages")
+    end)
+    it("Should support newlines\nin errors", function()
+      error("Error message with...\n    a newline")
+      assert.truthy(0)
+    end)
   end)
 end)

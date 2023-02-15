@@ -1,8 +1,9 @@
 rockspec_format = "3.0"
 package = "busted-codewars"
-version = "dev-1"
+version = "0.2.0-1"
 source = {
-   url = "git://github.com/codewars/busted-codewars"
+   url = "git://github.com/codewars/busted-codewars",
+   tag = "v0.2.0"
 }
 description = {
    summary = "Codewars output handler for Busted",
@@ -18,10 +19,9 @@ dependencies = {
 build = {
    type = "builtin",
    modules = {
-      ["busted.outputHandlers.codewars"] = "src/busted/outputHandlers/codewars.lua",
+      ["busted.outputHandlers.codewars"] = "src/busted/outputHandlers/codewars.lua"
    }
 }
-
 test = {
-  type = "busted"
+   type = "busted"
 }
